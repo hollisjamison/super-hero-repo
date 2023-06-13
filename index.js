@@ -1,5 +1,5 @@
 const express = require('express')
-const { addHeroController, renderHeroesPageController, getOneHeroController, getAllHeroesController, verifySlug } = require('./controllers')
+const { addHeroController, renderHeroesPageController, getOneHeroController, getAllHeroesController, verifySlug } = require('./controllers/controllers')
 
 const app = express()
 
