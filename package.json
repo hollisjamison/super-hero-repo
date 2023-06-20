@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/**/*.test.js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,11 @@
     "nodemon": "^2.0.22",
     "pug": "^3.0.2",
     "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0",
+    "sinon-chai": "^3.7.0"
   }
 }
