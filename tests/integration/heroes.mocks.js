@@ -17,6 +17,12 @@ const heroesList = [{
     firstappearance: 'Tales of Suspense #39',
     slug: 'iron-man'
   }
+
+  const invalidHero =   {
+    name: 'Iron Man',
+    realname: 'Tony Stark',
+    firstappearance: 'Tales of Suspense #39'
+  }
   
   
-  module.exports = {heroesList, singleHero}
+  module.exports = {heroesList, singleHero, invalidHero}

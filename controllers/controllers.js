@@ -11,9 +11,14 @@ const verifySlug = (request, response, next) => {
 }
 
 const getAllHeroesController = async (request, response) => {
-    const heroesData = await getAllHeroes()
+    try{
+        const heroesData = await getAllHeroes()
 
-    return response.send(heroesData)
+        return response.send(heroesData)
+    } catch (error) {
+        // console.log(error)
+        return response.sendStatus(500)
+    }
 }
 
 const renderHeroesPageController = (request, response) => {
@@ -25,13 +30,17 @@ const renderHeroesPageController = (request, response) => {
 }
 
 const getOneHeroController = async (request, response) => {
+    try{
     // use model to find our hero
     const foundHero = await getOneHero(request.params.slug)
 
     // error checking, after you find the data
-    if(!foundHero) return response.status(404).send("Hero was not found")
+    if(!foundHero.slug) return response.sendStatus(404)
 
     return response.send(foundHero)
+    } catch (error) {
+        return response.sendStatus(500)
+    }
 }
 
 const addHeroController = async (request, response) => {

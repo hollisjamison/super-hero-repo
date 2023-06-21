@@ -1,15 +1,25 @@
 const {heroesModel} = require('./index')
 
 const getAllHeroes = async () => {
-    const heroesData = await heroesModel.findAll()
+    try{
+        const heroesData = await heroesModel.findAll()
 
-    return heroesData
+        return heroesData
+    } catch (error) {
+        throw new Error('ERROR!')
+    }
+
 }
 
 const getOneHero = async (searchSlug) => {
-    const foundHero = await heroesModel.findOne({ where: { slug: searchSlug } })
+    try{
+        const foundHero = await heroesModel.findOne({ where: { slug: searchSlug } })
 
-    return foundHero
+        return foundHero
+    } catch(error) {
+        throw new Error('Database error')
+    }
+
 }
 
 const addHero = async (newHero) => {
