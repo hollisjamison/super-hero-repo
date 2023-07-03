@@ -1,7 +1,12 @@
 const Sequelize = require('sequelize')
 const { heroesTemplate } = require ('./heroesTemplate')
+const configs = require('../config/sequelize')
 
-const connection = new Sequelize('h_heroesdb', 'h_heroes_user', 'superheroes', {host: '173.230.134.130', dialect: 'mysql'})
+const environment = process.env.NODE_ENV || 'development'
+const config = configs[environment]
+const { database, username, password, host, dialect } = config
+
+const connection = new Sequelize(database, username, password, {host, dialect})
 
 const heroesModel =  heroesTemplate(connection, Sequelize)
 

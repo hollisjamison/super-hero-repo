@@ -5,7 +5,8 @@ const heroesTemplate = (connection, Sequelize) => {
         name: { type: Sequelize.STRING },
         realname: { type: Sequelize.STRING },
         firstappearance: { type: Sequelize.STRING },
-        slug: { type: Sequelize.STRING }
+        slug: { type: Sequelize.STRING, unique: true},
+        snapped: { type: Sequelize.BOOLEAN, defaultValue: 0 },
     }, { paranoid: true })
 }
 

@@ -17,6 +17,6 @@ app.get('/api/heroes/:slug', verifySlug, getOneHeroController)
 // POST: Add one hero
 app.post('/api/heroes', express.json(), addHeroController)
 
-app.listen(1337, () => {
-    console.log("Now listening on http://localhost:1337")
+app.listen(1338, () => {
+    console.log("Now listening on http://localhost:1338")
 })

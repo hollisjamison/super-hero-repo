@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "mocha tests/**/*.test.js"
+    "dev": "env-cmd nodemon index.js",
+    "test": "mocha tests/**/*.test.js",
+    "dev:migrate:up": "env-cmd sequelize db:migrate --env development --config ./config/sequelize.js",
+    "dev:migrate:undo": "env-cmd sequelize  db:migrate:undo --env development --config ./config/sequelize.js",
+    "dev:migrate:destroy": "env-cmd sequelize  db:migrate:undo:all --env development --config ./config/sequelize.js"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +18,12 @@
     "mysql2": "^3.3.5",
     "nodemon": "^2.0.22",
     "pug": "^3.0.2",
-    "sequelize": "^6.32.0"
+    "sequelize": "^6.32.0",
+    "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "env-cmd": "^10.1.0",
     "mocha": "^10.2.0",
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0"
