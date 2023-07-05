@@ -1,4 +1,5 @@
-const { getAllHeroes, getOneHero, addHero } = require('../models/heroesModel')
+const { response } = require('express')
+const { getAllHeroes, getOneHero, addHero, searchHeroes } = require('../models/heroesModel')
 
 const verifySlug = (request, response, next) => {
         let { slug } = request.params
@@ -59,4 +60,12 @@ const addHeroController = async (request, response) => {
     return response.status(201).send(newHeroes)
 }
 
-module.exports = { renderHeroesPageController, getOneHeroController, getAllHeroesController, verifySlug, addHeroController }
+const searchAllHeroesController = async (req, res) => {
+    const { searchTerm } = req.params
+
+    const heroes = await searchHeroes(searchTerm)
+
+    return res.send(heroes)
+}
+
+module.exports = { renderHeroesPageController,getOneHeroController, searchAllHeroesController, getAllHeroesController, verifySlug, addHeroController }
