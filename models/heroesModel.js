@@ -4,7 +4,7 @@ const Sequelize = require('sequelize')
 const getAllHeroes = async () => {
   try {
     const heroesData = await heroesModel.findAll({
-      attributes: ["id", "realname", "firstappearance", "slug", "snapped"],
+      attributes: ["id", "name", "realname", "firstappearance", "slug", "snapped"],
       order: [["id", "ASC"]],
     });
 
