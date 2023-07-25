@@ -9,7 +9,7 @@ const SuperheroList = (props) => {
     return (
       <li key={hero.slug}>
         <Link to={`heroes/${hero.slug}`}>
-          {hero.name} - {hero.realname}
+          {hero.name}
         </Link>
       </li>
     );
