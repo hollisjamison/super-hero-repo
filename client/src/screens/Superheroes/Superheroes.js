@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import SuperheroList from "../../components/SuperheroList/SuperheroList";
+import Search from "../../components/Search/Search";
 import axios from "axios";
+import './Superheroes.css'
 
 const Superheroes = () => {
   const [slug, setSlug] = useState("");
   const [heroes, setHeroes] = useState([]);
-  const [filteredHeroes, setFilteredHeroes] = useState([])
+  const [filteredHeroes, setFilteredHeroes] = useState([]);
 
   useEffect(() => {
     const fetchHeroes = async () => {
@@ -13,27 +16,26 @@ const Superheroes = () => {
 
       // update the state of our heroes state with the heroes it found
       setHeroes(fetch.data);
-      setFilteredHeroes(fetch.data)
+      setFilteredHeroes(fetch.data);
     };
 
     fetchHeroes();
   }, []);
 
   useEffect(() => {
-    setFilteredHeroes(heroes.filter(hero => {
-      if(hero.name.toLowerCase().includes(slug.toLowerCase()) || hero.realname.toLowerCase().includes(slug.toLowerCase())) {
-        return true
-      } else {
-        return false
-      }
-        
-    }))
-  }, [slug])
-
-  const heroesDivs = filteredHeroes.map((hero) => {
-      return <div>{hero.name} - {hero.realname}</div>;
-    });
-  
+    setFilteredHeroes(
+      heroes.filter((hero) => {
+        if (
+          hero.name.toLowerCase().includes(slug.toLowerCase()) ||
+          hero.realname.toLowerCase().includes(slug.toLowerCase())
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }, [slug]);
 
   return (
     <div className="page">
@@ -41,12 +43,8 @@ const Superheroes = () => {
       <div className="subtitle">
         A searchable list of all your favorite heroes
       </div>
-      <input
-        type="text"
-        name="search"
-        onChange={(event) => setSlug(event.target.value)}
-      />
-      <div className="heroes">{heroesDivs}</div>
+      <Search setSlug={setSlug} slug={slug} />
+      <SuperheroList heroes={filteredHeroes} />
     </div>
   );
 };
